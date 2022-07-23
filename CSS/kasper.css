@@ -1,0 +1,464 @@
+/* Start Variables */
+:root {
+    --main-color: #19c8fa;
+    --transparent-color:rgb(15 116 143 / 70%);
+    --section-padding:100px;
+}
+/* End Variables */
+/* Start Global Rules */
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: "Open Sans" , sans-serif;
+}
+ul {
+    list-style: none;
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 97px;
+}
+ /* Extra small devices (portrait phones, less than 576px) */
+ @media (max-width: 575.98px) {
+    .container{
+        width: 300px;
+    }
+ }
+/* extra small */
+@media (min-width: 576px){
+    .container{
+        width: 570px;
+    }
+}
+/* Small Screen begin from 768 and upper */
+@media (min-width: 768px) {
+    .container{
+        width: 750px;
+    }   
+}
+/* Medium Screen begin from 992 and upper */
+@media (min-width: 992px) {
+    .container{
+        width: 970px;
+    } 
+}
+/* Large Screen begin from 1200 and upper */
+@media (min-width: 1200px) {
+    .container{
+        width: 1170px;
+    } 
+}
+/* End Global Rules */
+/* Start Components */
+.main-heading {
+    text-align: center;
+}
+.main-heading h2 {
+    font-weight: normal;
+    font-size: 40px;
+    position: relative;
+    margin-bottom: 70px;
+    text-transform: uppercase;
+}
+.main-heading h2::before { /*line after heading like:/services,portfolio ..etc*/
+    content: "";
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    height: 2px;
+    background-color: rgb(51, 51, 51);
+    bottom: -30px;
+    width: 120px;
+}
+.main-heading h2::after { /*small circul in that line*/
+    left: 50%;
+    content: '';
+    position: absolute;
+    transform: translateX(-50%);
+    border: 2px solid #333;
+    bottom: -38px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.main-heading p {
+    width: 550px;
+    margin: 0 auto 100px;
+    max-width: 100%; /*to not be outside in mobile*/
+    line-height: 2;
+    color: #777;
+}
+/* End Components */
+/* Start Header */
+header{
+    position: absolute; /*to allow the*/
+    left: 0;            /*owl backgrornd be*/
+    width: 100%;        /*background of the header & nav links*/
+    z-index: 2;
+}
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+header .container::after{  /*to draw the line as bottom border*/
+    content: "";
+    position: absolute;
+    height: 1px;
+    background-color: #a2a2a2;
+    width: calc(100% - 30px); /*30 is  total padding left + right main container*/
+    bottom: 0;
+    left: 15px; /*to begin after padding left 15*/
+}
+header .logo img{
+    height: 40px; /*in img always set either height or width NOT both */
+}
+
+header nav {
+    flex: 1;  /*  معناه الناف يياخذ باقي  المساحة  الفارغة*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+header nav .toggle-menu {
+    color: #fff;
+    font-size: 22px;
+}
+@media (min-width:768px) { /*larger than  768 it will disappear*/
+    header nav .toggle-menu {
+        display: none;
+    }    
+}
+header nav ul {
+    display: flex;
+}
+/*links of nav will appear in all screens & disapear in mobile */
+@media (max-width:767px) { 
+    header nav ul {
+        display: none; /*less than 767px it will disappear*/
+    }
+    header nav .toggle-menu:hover + ul { /*عند عمل هوفر ماذا يحدث لل يو ال*/
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 100%;
+        background-color: rgb(0 0 0 / 50%);
+    }
+    header nav ul li a{
+        padding: 15px !important; /*smallerr  padding*/
+    }
+}
+header nav ul li a {
+    padding: 40px 10px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2; /*to show the bottom color border*/
+}
+header nav ul li a.active,
+header nav ul li a:hover {
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+}
+header nav .form {
+    width: 40px;
+    height: 30px;
+    position: relative; /*to position  the icon*/
+    margin-left: 30px;
+    border-left: 1px solid #fff;
+}
+header nav .form i {
+    color: #fff;
+    position: absolute;
+    font-size: 20px;
+    top: 50%;      /* to */
+    transform: translateY(-50%); /* center the*/
+    right: 0; /*search icon*/
+}
+/* End header */
+/* Start Landing */
+.landing {
+    min-height: 100vh; /*full screen*/
+    background-color: #1f2021; /*in case the user browser couldn't load the img its an altarnative*/
+    background-image: url("../images/landing.jpg");
+    background-size: cover;
+    position: relative; /*to let the overlay layer be on the bg*/
+}
+.landing .overlay {
+    position: absolute;             /*control*/
+    left: 0;                        /*the*/
+    top: 0;                         /*tranparency*/
+    width: 100%;                    /*layer*/
+    height: 100%;                   /*on the*/
+    background-color: rgb(0 0 0 / 40%); /* bg*/
+}
+.landing .text {    
+    position: absolute;           /*to*/
+    left: 0;                      /*center*/
+    top: 50%;                     /*h2 and*/
+    transform: translateY(-50%);  /*p*/
+    width: 50%;
+    padding: 50px;
+    background-color:var(--transparent-color);
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+}
+.landing .text .content{    
+    max-width: 500px;
+}
+@media (max-width:767px) {
+    .landing .text{
+        width: 100%; /*center the div in mobile*/
+    }
+    .landing .text .content {
+        max-width: 100%; /*center the text*/
+    }  
+}
+.landing .text .content h2{
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 1.5;
+    margin-bottom: 20px;  
+}
+.landing .text .content p {
+    font-size: 14px;
+    line-height: 2;
+}
+.landing .change-background{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /*توسييط عمودي*/
+    color: #ddd;
+}
+@media (max-width:767px){  /*remove arrow in the mobile version*/
+    .landing .change-background{
+        display: none;
+    }
+}
+.landing .fa-angle-left {
+    left: 30px;
+}
+.landing .fa-angle-right{
+    right: 30px;
+}
+/*positioning  the three circules*/
+.landing .bullets{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);  /*توسيط افقي*/
+    bottom: 30px;
+    display: flex;
+}
+/* three circules at the bottom  */
+.landing .bullets li {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.landing .bullets li.active {
+    background-color: var(--main-color);
+    border: none;
+}
+/* End Landing */
+/* Start Services */
+.services {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+/* to screens upper than mobile (larger than (768px)) so use grid */
+@media (min-width: 768px) {
+    .services .services-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        grid-column-gap: 40px;
+        grid-row-gap: 60px;
+    }
+    
+}
+.services .srv-box {
+    display: flex; /*its ok to mobile */
+}
+.services .srv-box i {
+    margin-right: 50px;
+}
+@media (max-width:767px) {
+    .services .srv-box {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .services .srv-box i {
+        margin: 0 0 30px;
+    }  
+}
+.services .srv-box h3 {
+    color: var(--main-color);
+    margin-bottom: 30px;
+}
+.services .srv-box p {
+    line-height: 2;
+    color: #777;
+}
+/* End Services */
+/* Start Design */
+.design {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    height: 600px;
+    position: relative;
+    background-image: url("../images/design-features.jpg");
+    background-size: cover;
+    display: flex; /*التوسيط  هنا باستخدام الفلكس*/
+    align-items: center;
+    overflow: hidden; /*image outside the section hidden*/
+}
+.design::before {
+    content: "";
+    position: absolute;             /*control*/
+    left: 0;                        /*the*/
+    top: 0;                         /*tranparency*/
+    width: 100%;                    /*layer*/
+    height: 100%;                   /*on the*/
+    background-color: rgb(0 0 0 / 40%); /* bg*/  
+}
+.design .image ,
+.design .text {
+    position: relative;  /*to not be*/
+    z-index: 2;         /*transparent*/
+    flex: 1; /*to distribute area between img and text*/
+}
+.design .image {
+    text-align: center;
+}
+@media (max-width:768px) {
+    .design .image {
+        display: none;
+    }
+    
+}
+.design .image img {
+    position: relative;
+    bottom: -150px;
+}
+.design .text {
+    color: #fff;
+    padding: 50px;
+    background-color: var(--transparent-color);
+}
+.design .text h2 {
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.design .text ul li {
+    padding: 15px 0;
+}
+.design .text ul li::before {  /*add icons using seudu class*/
+    font-family: 'Font Awesome 5 Free'; /*font to add icon*/
+    content: "\f390";
+    font-weight: 900;
+    margin-right: 20px;
+    position: relative;
+    top: 1px;
+}
+/* End Design */
+/* Start Portfolio */
+.portfolio {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.portfolio .shuffle {
+    display: flex;
+    justify-content: center;
+}
+.portfolio .shuffle li {
+    padding: 10px;
+}
+.portfolio .shuffle li.active{
+    background-color: var(--main-color);
+    color: #fff;
+}
+.portfolio .imgs-container{
+    display: flex;
+    flex-wrap: wrap; /*if there any element  cross the container it will move down*/
+    margin-top: 60px;
+}
+.portfolio .imgs-container .box {
+    position: relative; /*to control position of the image cation*/
+    overflow: hidden; /*to hide the caption */
+}
+/*when hover the box of img the bottom of caption move from -100px to 0 an Up smoot action*/
+.portfolio .imgs-container .box:hover .caption {
+    bottom: 0;
+}
+/* when hover img action will be (as below) : */
+.portfolio .imgs-container .box:hover img {
+    transform: rotate(3deg) scale(1.1);
+}
+/*screen larger than mobile */
+@media (min-width: 768px) {
+    .portfolio .imgs-container .box{
+    flex-basis: 50%;
+    }
+}
+/* screen larger than middle and large screen */
+@media (min-width: 1199px) {
+    .portfolio .imgs-container .box{
+    flex-basis: 25%;
+    }
+}
+.portfolio .imgs-container .box img{
+    max-width: 100%; /*image never grow outside its container */
+    transition: 0.3s;
+}
+.portfolio .imgs-container .box .caption {
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    background-color: #fff;
+    width: 100%;
+    transition: 0.3s;
+    bottom: -100px;
+
+}
+.portfolio .imgs-container .box .caption h4 {
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+.portfolio .imgs-container .box .caption p {
+    color: var(--main-color);
+}
+.portfolio .more {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 15px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+}
+
+/* End Portfolio */
